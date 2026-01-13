@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "author": {
+      "type": "string",
+      "description": "author name",
+      "default": "lxl"
+    }
+  },
+  "required": ["author"],
+  "additionalProperties": false
+}
