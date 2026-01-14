@@ -1,15 +1,16 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TestPlugin = require('./plugins/test-plugin.js');
-const BannerWebpackPlugin=require('./plugins/banner-webpack-plugin.js');
-const CleanPlugin=require('./plugins/clean-plugin.js')
-const AnalyzePlugin=require('./plugins/analyze-plugin')
+const BannerWebpackPlugin = require('./plugins/banner-webpack-plugin.js');
+const CleanPlugin = require('./plugins/clean-plugin.js')
+const AnalyzePlugin = require('./plugins/analyze-plugin.js')
+const InlineChunkPlugin = require('./plugins/inline-chunk-plugin.js')
 module.exports = {
     entry: './src/main.js',
     output: {
         filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist'),
-        // clean: true
+        clean: true
     },
     module: {
         rules: [
@@ -47,8 +48,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public/index.html')
         }),
-        new AnalyzePlugin()
+        new InlineChunkPlugin()
     ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        },
+        runtimeChunk: {
+            name: (entrypoint) => `runtime~${entrypoint.name}.js`
+        }
+    },
     mode: 'development',
     devServer: {
         static: path.join(__dirname, 'dist'),
