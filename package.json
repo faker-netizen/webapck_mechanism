@@ -1,26 +1,36 @@
 {
   "name": "webpack_yuanli",
   "version": "1.0.0",
-  "description": "",
+  "description": "��#\u0000 \u0000w\u0000e\u0000b\u0000a\u0000p\u0000c\u0000k\u0000_\u0000m\u0000e\u0000c\u0000h\u0000a\u0000n\u0000i\u0000s\u0000m\u0000\r\u0000 \u0000",
   "main": "webpack.config.js",
   "scripts": {
-    "dev": "webpack"
+    "dev": "webpack",
+    "debug": "node --inspect-brk node_modules/webpack-cli/bin/cli.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/faker-netizen/webapck_mechanism.git"
+    "url": "git+https://github.com/faker-netizen/webapck_mechanism.git"
   },
   "private": true,
   "dependencies": {
     "@babel/core": "^7.28.6",
     "@babel/preset-env": "^7.28.6",
+    "@types/webpack": "^5.28.5",
     "html-webpack-plugin": "^5.6.5",
-    "loader-utils": "^3.3.1",
+    "loader-utils": "^3.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.8",
+    "css-loader": "^7.1.2",
+    "style-loader": "^4.0.0",
     "webpack": "^5.104.1",
     "webpack-cli": "^6.0.1"
   },
-  "devDependencies": {
-    "css-loader": "^7.1.2",
-    "style-loader": "^4.0.0"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/faker-netizen/webapck_mechanism/issues"
+  },
+  "homepage": "https://github.com/faker-netizen/webapck_mechanism#readme"
 }

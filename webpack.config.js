@@ -1,30 +1,34 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TestPlugin = require('./plugins/test-plugin.js');
+const BannerWebpackPlugin=require('./plugins/banner-webpack-plugin.js');
+const CleanPlugin=require('./plugins/clean-plugin.js')
+const AnalyzePlugin=require('./plugins/analyze-plugin')
 module.exports = {
     entry: './src/main.js',
     output: {
         filename: 'js/[name].js',
         path: path.resolve(__dirname, 'dist'),
-        clean: true
+        // clean: true
     },
     module: {
         rules: [
             {
                 test: /\.css$/,
-                use: ['./loaders/style-loader/index.js','css-loader']
+                use: ['./loaders/style-loader/index.js', 'css-loader']
             },
             {
                 test: /\.js$/,
                 use: ["./loaders/clean-log-loader.js"]
             },
-            {
-                test: /\.js$/,
-                use: [{
-                    loader: "./loaders/banner-loader/index.js", options: {
-                        author: 'lxl2'
-                    }
-                }],
-            },
+            // {
+            //     test: /\.js$/,
+            //     use: [{
+            //         loader: "./loaders/banner-loader/index.js", options: {
+            //             author: 'lxl2'
+            //         }
+            //     }],
+            // },
             {
                 test: /\.js$/,
                 loader: './loaders/primary-babel-loader/index.js',
@@ -39,9 +43,12 @@ module.exports = {
             }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
-        template: path.resolve(__dirname, 'public/index.html')
-    })],
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'public/index.html')
+        }),
+        new AnalyzePlugin()
+    ],
     mode: 'development',
     devServer: {
         static: path.join(__dirname, 'dist'),
